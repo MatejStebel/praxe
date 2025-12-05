@@ -1,0 +1,16 @@
+button a{
+    color: red;
+}
+h1 {
+    color: blue;
+    text-align: center;
+    font-size: 40px;
+}
+h2 {
+    color: green;
+    font-size: 30px;
+}
+button {
+    font-size: 15px;
+    margin: 10px;
+}
