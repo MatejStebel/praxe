@@ -1,35 +1,80 @@
-#letters {
-    text-transform: lowercase;
-    font-size: 50px;
-    font-family: 'Bitcount Prop Double Ink', sans-serif;
-    margin: 5px;
-    width: fit-content;
-    background-color: turquoise;
-    text-align: center;
-    height: 60px;
-    margin: 20px;
-}
-
-#output {
-    text-transform: lowercase;
-    font-size: 50px;
-    font-family: 'Bitcount Prop Double Ink', sans-serif;
-    margin: 5px;
-    width: fit-content;
-    text-align: center;
-    height: 60px;
-    margin: 20px;
-    resize: none;
-}
-
-#button {
-    margin: 20px;
-    height: 60px;
-    width: 100px;
-    border-radius: 25%;
-}
-
+/* Body and container */
 body {
-    display: grid;
-    place-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0080ff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.container {
+    background: #add3f8;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 350px;
+}
+
+/* Input */
+#letters {
+    width: 100%;
+    padding: 15px;
+    font-size: 28px;
+    border: 2px solid #4db6ac;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    text-transform: lowercase;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#letters:focus {
+    border-color: #00897b;
+}
+
+/* Button */
+#button {
+    width: 100%;
+    padding: 15px;
+    font-size: 22px;
+    background-color: #00897b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#button:hover {
+    background-color: #00695c;
+}
+
+/* Results list */
+#output {
+    margin-top: 25px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-left: 0;
+    list-style: none;
+    text-align: left;
+}
+
+#output li {
+    background: #e0f2f1;
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 20px;
+    color: #004d40;
+    transition: background-color 0.2s ease;
+    cursor: default;
+}
+
+#output li:hover {
+    background-color: #b2dfdb;
 }
