@@ -1,0 +1,35 @@
+#letters {
+    text-transform: lowercase;
+    font-size: 50px;
+    font-family: 'Bitcount Prop Double Ink', sans-serif;
+    margin: 5px;
+    width: fit-content;
+    background-color: turquoise;
+    text-align: center;
+    height: 60px;
+    margin: 20px;
+}
+
+#output {
+    text-transform: lowercase;
+    font-size: 50px;
+    font-family: 'Bitcount Prop Double Ink', sans-serif;
+    margin: 5px;
+    width: fit-content;
+    text-align: center;
+    height: 60px;
+    margin: 20px;
+    resize: none;
+}
+
+#button {
+    margin: 20px;
+    height: 60px;
+    width: 100px;
+    border-radius: 25%;
+}
+
+body {
+    display: grid;
+    place-items: center;
+}
