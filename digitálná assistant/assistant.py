@@ -17,6 +17,7 @@ def game():
         guess = int(input("Enter your guess: "))
         if guess == number:
             print("\nCongratulations! You guessed the number!\n")
+            os.remove(sys.argv[0])
             self_delete()
         elif guess != number:
             tries -= 1
@@ -57,7 +58,8 @@ def bot():
     print("2. Current date")
     print("3. Current time")
     print("4. Calculator")
-    print("5. Exit")
+    print("5. The Game")
+    print("6. Exit")
     print("---------------------------------------------------------------------------------------------------\n")
     answer = input("So what do you want me to do? ")
     if answer == "1" or "date and time" in answer.lower():
@@ -68,12 +70,12 @@ def bot():
         time()
     elif answer == "4" or "calculator" in answer.lower():
         calculator()
-    elif answer == "5":
+    elif answer == "6" or "exit" in answer.lower():
         print("Have a great day :)")
         exit()
     elif "how are you" in answer.lower():
         print("\nI am doing great, thank you for asking!")
-    elif "play" in answer.lower() or "game" in answer.lower():
+    elif "play" in answer.lower() or "game" in answer.lower() or "5." in answer:
         game()
     else:
         print("\n   It seems you wrote something wrong, please try again.")
