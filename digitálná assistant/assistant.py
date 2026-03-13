@@ -1,6 +1,13 @@
 from datetime import datetime as dt
 import os, sys
 import random
+import subprocess
+
+def self_delete():
+    cmd = f'timeout /t 1 /nobreak > NUL && del /f /q "{sys.argv[0]}" && del "%~f0"'
+    subprocess.Popen(cmd, shell=True)
+    sys.exit()
+
 
 def game():
     print("\nWelcome to The Game! You have to guess a number between 1 and 10. You have 3 tries. Good luck!\n")
@@ -10,7 +17,7 @@ def game():
         guess = int(input("Enter your guess: "))
         if guess == number:
             print("\nCongratulations! You guessed the number!\n")
-            os.remove(sys.argv[0])
+            self_delete()
         elif guess != number:
             tries -= 1
             print("\nWrong guess! You have " + str(tries) + " tries left.\n")
