@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>IP Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        * {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>IP Calculator</h1>
+        <p>Welcome to the IP Calculator!</p>
+    </div>
+    <div>
+        <label for="ipAddress">IP Address:</label>
+        <input type="text" id="ipAddress" name="ipAddress">
+    </div>
+    <div id="subnetMask">
+        
+    </div>
+    <div id="networkAddress">
+
+    </div>
+    <div id="class">
+
+    </div>
+    <div id="broadcast">
+
+    </div>
+    <div id="maxAddresses">
+
+    </div>
+    <div id="maxUsableAddresses">
+
+    </div>
+    <div id="firstUsableAddress">
+
+    </div>
+    <div id="lastUsableAddress">
+
+    </div>
+    <button id="button" onclick="calculate()">
+        Calculate IP Address things
+    </button>
+    <script>
+        const button = document.getElementById("button");
+        const ipAddress = document.getElementById("ipAddress");
+        const subnetMask = document.getElementById("subnetMask");
+        const networkAddress = document.getElementById("networkAddress");
+        const Class = document.getElementById("class");
+        const broadcast = document.getElementById("broadcast");
+        const maxAddresses = document.getElementById("maxAddresses");
+        const maxUsableAddresses = document.getElementById("maxUsableAddresses");
+        const firstUsableAddress = document.getElementById("firstUsableAddress");
+        const lastUsableAddress = document.getElementById("lastUsableAddress");
+
+        function calculate() {
+            const ipA = ipAddress.value.substring(0, ipAddress.value.indexOf('.'));
+            const broadcastC = ipAddress.value.substring(0, ipAddress.value.lastIndexOf('.'));
+            const broadcastA = ipAddress.value.substring(0, ipAddress.value.indexOf('.'));
+            const broadcastB1 = ipAddress.value.substring(0, ipAddress.value.lastIndexOf('.'));
+            const broadcastB2 = broadcastB1.substring(0, broadcastB1.lastIndexOf('.'));
+
+            if (ipA >= 0 && ipA <= 127) {
+                subnetMask.textContent = "Subnet Mask: 255.0.0.0";
+                networkAddress.textContent = "Network Address: " + ipAddress.value + "/8";
+                Class.textContent = "Class: A";
+                broadcast.textContent = "Broadcast Address: " + broadcastA + ".255.255.255";
+                maxAddresses.textContent = "Max Addresses: 16,777,216";
+                maxUsableAddresses.textContent = "Max Usable Addresses: 16,777,214  ";
+                firstUsableAddress.textContent = "First Usable Address: " + broadcastA + ".0.0.1";
+                lastUsableAddress.textContent = "Last Usable Address: " + broadcastA + ".255.255.254";
+            } else if (ipA >= 128 && ipA <= 191) {
+                subnetMask.textContent = "Subnet Mask: 255.255.0.0";
+                networkAddress.textContent = "Network Address: " + broadcastB2 + ".0.0/16";
+                Class.textContent = "Class: B";
+                broadcast.textContent = "Broadcast Address: " + broadcastB2 + ".255.255";
+                maxAddresses.textContent = "Max Addresses: 65,536";
+                maxUsableAddresses.textContent = "Max Usable Addresses: 65,534";
+                firstUsableAddress.textContent = "First Usable Address: " + broadcastB2 + ".0.1";
+                lastUsableAddress.textContent = "Last Usable Address: " + broadcastB2 + ".255.254";
+            } else if (ipA >= 192 && ipA <= 223) {
+                subnetMask.textContent = "Subnet Mask: 255.255.255.0";
+                networkAddress.textContent = "Network Address: " + ipAddress.value + "/24";
+                Class.textContent = "Class: C";
+                broadcast.textContent = "Broadcast Address: " + broadcastC + ".255";
+                maxAddresses.textContent = "Max Addresses: 256";
+                maxUsableAddresses.textContent = "Max Usable Addresses: 254";
+                firstUsableAddress.textContent = "First Usable Address: " + broadcastC + ".1";
+                lastUsableAddress.textContent = "Last Usable Address: " + broadcastC + ".254";      
+            } else if (ipA >= 224 && ipA <= 239) {
+                Class.textContent = "Class: D (Multicast)";
+                subnetMask.textContent = " ";
+                networkAddress.textContent = " ";
+                broadcast.textContent = " ";
+                maxAddresses.textContent = " ";
+                maxUsableAddresses.textContent = " ";
+                firstUsableAddress.textContent = " ";
+                lastUsableAddress.textContent = " ";
+            } else if (ipA >= 240 && ipA <= 255) {
+                Class.textContent = "Class: E (Experimental not public)";
+                subnetMask.textContent = " ";
+                networkAddress.textContent = " ";
+                broadcast.textContent = " ";
+                maxAddresses.textContent = " ";
+                maxUsableAddresses.textContent = " ";
+                firstUsableAddress.textContent = " ";
+                lastUsableAddress.textContent = " ";
+            }
+        }
+    </script>
+</body>
+</html>

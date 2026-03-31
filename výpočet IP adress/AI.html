@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        * {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>IP Calculator</h1>
+
+<div>
+    <label>IP Address:</label>
+    <input type="text" id="ipAddress" placeholder="192.168.1.10">
+</div>
+
+<div>
+    <label>Subnet (CIDR):</label>
+    <select id="cidr">
+        <option value="8">/8</option>
+        <option value="16">/16</option>
+        <option value="24" selected>/24</option>
+        <option value="25">/25</option>
+        <option value="26">/26</option>
+        <option value="27">/27</option>
+        <option value="28">/28</option>
+        <option value="29">/29</option>
+        <option value="30">/30</option>
+    </select>
+</div>
+
+<div id="subnetMask"></div>
+<div id="networkAddress"></div>
+<div id="class"></div>
+<div id="broadcast"></div>
+<div id="maxAddresses"></div>
+<div id="maxUsableAddresses"></div>
+<div id="firstUsableAddress"></div>
+<div id="lastUsableAddress"></div>
+
+<button onclick="calculate()">Calculate</button>
+
+<script>
+function ipToInt(ip) {
+    return ip.split('.').reduce((acc, octet) => (acc << 8) + Number(octet), 0);
+}
+
+function intToIp(int) {
+    return [
+        (int >>> 24) & 255,
+        (int >>> 16) & 255,
+        (int >>> 8) & 255,
+        int & 255
+    ].join('.');
+}
+
+function cidrToMask(cidr) {
+    return (0xFFFFFFFF << (32 - cidr)) >>> 0;
+}
+
+function getClass(firstOctet) {
+    if (firstOctet <= 127) return "Class A";
+    if (firstOctet <= 191) return "Class B";
+    if (firstOctet <= 223) return "Class C";
+    if (firstOctet <= 239) return "Class D (Multicast)";
+    return "Class E (Experimental)";
+}
+
+function calculate() {
+    const ip = document.getElementById("ipAddress").value;
+    const cidr = Number(document.getElementById("cidr").value);
+
+    const parts = ip.split('.').map(Number);
+    if (parts.length !== 4 || parts.some(n => n < 0 || n > 255)) {
+        alert("Invalid IP");
+        return;
+    }
+
+    const ipInt = ipToInt(ip);
+    const mask = cidrToMask(cidr);
+    const network = ipInt & mask;
+    const broadcast = network | (~mask >>> 0);
+
+    const total = Math.pow(2, 32 - cidr);
+    const usable = total > 2 ? total - 2 : 0;
+
+    const first = usable > 0 ? network + 1 : network;
+    const last = usable > 0 ? broadcast - 1 : broadcast;
+
+    document.getElementById("subnetMask").textContent =
+        "Subnet Mask: " + intToIp(mask);
+
+    document.getElementById("networkAddress").textContent =
+        "Network Address: " + intToIp(network) + "/" + cidr;
+
+    document.getElementById("class").textContent =
+        "Class: " + getClass(parts[0]);
+
+    document.getElementById("broadcast").textContent =
+        "Broadcast Address: " + intToIp(broadcast);
+
+    document.getElementById("maxAddresses").textContent =
+        "Max Addresses: " + total;
+
+    document.getElementById("maxUsableAddresses").textContent =
+        "Max Usable Addresses: " + usable;
+
+    document.getElementById("firstUsableAddress").textContent =
+        "First Usable Address: " + intToIp(first);
+
+    document.getElementById("lastUsableAddress").textContent =
+        "Last Usable Address: " + intToIp(last);
+}
+</script>
+
+</body>
+</html>

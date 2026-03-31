@@ -1,0 +1,23 @@
+<AutoClicker>:
+    Label:
+        id: label
+        text: "Auto Clicker"
+        font_size: 32
+        center_x: root.center_x
+        center_y: root.center_y
+    TextInput:
+        id: click_interval
+        hint_text: "Click Interval (ms)"
+        input_filter: "float"
+        multiline: False
+        size_hint: (0.5, None)
+        height: 40
+        center_x: root.center_x
+        center_y: root.center_y - 100
+    Button:
+        id: button
+        text: "Input Click Interval"
+        size_hint: (0.5, None)
+        height: 40
+        center_x: root.center_x
+        center_y: root.center_y - 150
