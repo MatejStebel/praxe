@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Zadání #2: Hesla</title>
+</head>
+<body>
+    <div id="container">
+        <h1>
+            Generátor hesel
+        </h1>
+        <input type="text" name="" id="output" readonly>
+        <Label>
+            Počet znaků:
+            <input type="number" name="Počet znaků:" id="amount" max="24" min="6" value="12">
+        </Label>
+        <Label>
+            Speciální znaky:
+            <input type="checkbox" name="Speciální znaky" id="check" checked>
+        </Label>
+        <button id="button" onclick="password()">
+            Generovat
+        </button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
