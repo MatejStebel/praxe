@@ -5,7 +5,14 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from tkinter import Tk, filedialog
+import random
 Builder.load_file("finder.kv")
+
+class End(Widget):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        Window.fullscreen = 'auto'
+        self.image = self.ids.image
 
 
 class Finder(Widget):
@@ -33,8 +40,36 @@ class Finder(Widget):
         self.hobbies.bind(on_text_validate=self.check_hobbies)
         self.done = True
         self.button1 = self.ids.button1
-        self.button1.bind(on_press=)
+        self.button1.bind(on_press=self.find)
+        self.start = False
+        self.bar = self.ids.bar
+        self.status_label = self.ids.status_label
+        self.number = 0
 
+    def find(self, y):
+        self.start = True
+    
+    def finding(self, dt):
+        if self.start and self.bar.value <= 300 and self.name_y and self.age_y and self.country_y and self.city_y and self.hobbies_y and self.image:
+            self.numberr = random.randint(100, 1000)
+            self.number += self.numberr
+            self.bar.value += 1
+            self.status_label.text = f"Scanned {str(self.number)} people"
+        if self.start and self.bar.value <= 500 and self.bar.value >= 300:
+            self.bar.value += 1
+            self.numberrr = random.randint(100, 1000)
+            self.number -= self.numberrr
+            self.status_label.text = f"Eliminating incompatible people: {str(self.number)}"
+        if self.start and self.bar.value < 600 and self.bar.value >= 500:
+            self.bar.value += 1
+            self.number -= 500
+            self.status_label.text = f"Eliminating incompatible people: {str(self.number)}"
+        if (self.start and self.bar.value == 600) or self.number < 0:
+            self.number = 0
+            self.bar.value = 600
+            self.status_label.text = f"Found compatible people: {str(self.number)}"
+            self.start = False
+            self.add_widget(End())
     def load_image(self, selection):
         # Open the standard OS system file dialog
         file_path = filedialog.askopenfilename(
@@ -84,6 +119,7 @@ class FinderApp(App):
         app = Finder()
         Window.bind(on_key_down=self.on_key_down)
         Clock.schedule_interval(app.update, 1.0 / 60.0)
+        Clock.schedule_interval(app.finding, 1.0 / 60.0)
         Window.fullscreen = 'auto'
         return app
     def on_key_down(self, window, key, scancode, codepoint, modifiers):

@@ -1,4 +1,15 @@
+<End>:
+    Image:
+        source: "gorilla-middle-finger.png"
+        width: 1500
+        height: 1000
+        id: image
+        allow_stretch: True
+        keep_ratio: True
+
+
 <Finder>:
+    status_label: status_label
     Label:
         text: "Find your twins! The best AI finder"
         font_size: 60
@@ -165,12 +176,13 @@
                 y: root.top - self.height * 3.5
                 id: status
             Label:
-                text: "Shoda s x lidmi"
+                text: str(root.status_label.text)
                 font_size: 18
                 size_hint: None, None
                 width: dp(90)
                 x: label.x / 1.2
                 y: root.top - self.height * 3.9
+                id: status_label
             ProgressBar:
                 max: 600
                 value: 0
@@ -178,6 +190,7 @@
                 width: dp(400)
                 x: label.x / 1.2
                 y: root.top - self.height * 4.3
+                id: bar
             Button:
                 id: button1
                 text: "Vyhledat"
