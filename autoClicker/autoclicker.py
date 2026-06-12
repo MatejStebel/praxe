@@ -35,14 +35,11 @@ class AutoClicker(Widget):
             self.clicks += 1
             self.label.text = f"Mouse Position: \n{pyautogui.position()}\nClicks: {self.clicks}"
         
-        if self.button.clicked:
-            self.click_interval = float(self.interval.text)
-
 
 class AutoClickerApp(App):
     def build(self):   
         game = AutoClicker()
-        Clock.schedule_interval(game.update, 1.0 / 120.0)  # Run game at 60 FPS
+        Clock.schedule_interval(game.update, 1.0 / 60.0)  # Run game at 60 FPS
         return game
 
 if __name__ == "__main__":

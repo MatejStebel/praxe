@@ -1,0 +1,189 @@
+<Finder>:
+    Label:
+        text: "Find your twins! The best AI finder"
+        font_size: 60
+        size_hint: None, None
+        x: root.width /2 - self.width / 2
+        y: root.top - self.height
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint: None, None
+        size: root.size
+        FloatLayout:
+            size_hint: .5, .8
+            pos_hint: {"x": .7, "y": 0}
+            Label:
+                text: "Zadejte data"
+                font_size: 18
+                size_hint: None, None
+                x: self.width
+                y: root.top - self.height * 2
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: None, None
+                size: self.size
+                Label:
+                    text: "Jméno:"
+                    font_size: 18
+                    size_hint: None, None
+                    x: self.width
+                    y: root.top - self.height * 2.45
+                TextInput:
+                    focus: True
+                    id: name
+                    size_hint: None, None
+                    multiline: False
+                    allow_copy: False
+                    x: self.width
+                    y: root.top - self.height * 7
+                    height: dp(30)
+                    width: dp(300)
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: None, None
+                size: self.size
+                Label:
+                    text: "Věk:"
+                    font_size: 18
+                    size_hint: None, None
+                    x: self.width
+                    y: root.top - self.height * 2.89
+                TextInput:
+                    id: age
+                    size_hint: None, None
+                    multiline: False
+                    allow_copy: False
+                    x: self.width
+                    y: root.height - self.height * 8.5
+                    height: dp(30)
+                    width: dp(300)
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: None, None
+                size: self.size
+                Label:
+                    text: "Stát:"
+                    font_size: 18
+                    size_hint: None, None
+                    x: self.width
+                    y: root.top - self.height * 3.35
+                TextInput:
+                    id: country
+                    size_hint: None, None
+                    multiline: False
+                    allow_copy: False
+                    x: self.width
+                    y: root.height - self.height * 10
+                    height: dp(30)
+                    width: dp(300)
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: None, None
+                size: self.size
+                Label:
+                    text: "Město:"
+                    font_size: 18
+                    size_hint: None, None
+                    x: self.width
+                    y: root.top - self.height * 3.8
+                TextInput:
+                    id: city
+                    size_hint: None, None
+                    multiline: False
+                    allow_copy: False
+                    x: self.width
+                    y: root.height - self.height * 11.5
+                    height: dp(30)
+                    width: dp(300)
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: None, None
+                size: self.size
+                Label:
+                    text: "Koníčky:"
+                    font_size: 18
+                    size_hint: None, None
+                    x: self.width
+                    y: root.top - self.height * 4.28    
+                TextInput:
+                    id: hobbies
+                    size_hint: None, None
+                    multiline: False
+                    allow_copy: False
+                    x: self.width
+                    y: root.height - self.height * 13.1
+                    height: dp(30)
+                    width: dp(300)
+            Button:
+                id: button
+                text: "Vložte obrázek"
+                size_hint: None, None
+                size: self.size
+                height: dp(30)
+                width: dp(400)
+                x: 10
+                y: root.top - self.height * 15
+            Image:
+                id: image
+                size_hint: None, None
+                size: self.size
+                height: dp(440)
+                width: dp(400)
+                x: 10
+                y: 0
+        FloatLayout:
+            orientation: "vertical"
+            size_hint: .5, 1
+            pos_hint: {"x": .7, "y": 0}
+            Label:
+                text: "AI vyhledávání"
+                font_size: 18
+                size_hint: None, None
+                x: self.width + root.width / 2
+                y: root.top - self.height * 2
+            Label:
+                text: "Globální AI vyhledávání dvojčat"
+                font_size: 24
+                size_hint: None, None
+                x: self.width * 2 + root.width / 2
+                y: root.top - self.height * 2.3
+                bold: True
+                italic: True
+            Label:
+                text: "Používáme AI k procházení globálních\n databází a vyhledávání vám podobných lidí pomocíporovnávání\n vámi zadaných dat s daty v databázích."
+                font_size: 18
+                size_hint: None, None
+                x: self.width * 2.8 + root.width / 2
+                y: root.top - self.height * 2.8
+                id: label
+            Label:
+                text: ""
+                font_size: 18
+                size_hint: None, None
+                width: dp(90)
+                x: label.x / 1.2
+                y: root.top - self.height * 3.5
+                id: status
+            Label:
+                text: "Shoda s x lidmi"
+                font_size: 18
+                size_hint: None, None
+                width: dp(90)
+                x: label.x / 1.2
+                y: root.top - self.height * 3.9
+            ProgressBar:
+                max: 600
+                value: 0
+                size_hint: None, None
+                width: dp(400)
+                x: label.x / 1.2
+                y: root.top - self.height * 4.3
+            Button:
+                id: button1
+                text: "Vyhledat"
+                size_hint: None, None
+                size: self.size
+                height: dp(30)
+                width: dp(400)
+                x: label.x / 1.2
+                y: root.top - self.height * 15
